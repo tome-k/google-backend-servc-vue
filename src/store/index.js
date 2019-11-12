@@ -16,10 +16,12 @@ export default new Vuex.Store({
       } else {
         state.cart.push(item)
       }
+
+      this.commit('saveLocal');
     },
 
     saveLocal(state) {
-      window.localStorage.setItem('cart', state.cart)
+      window.localStorage.setItem('cart', JSON.stringify(state.cart));
     }
   },
 
