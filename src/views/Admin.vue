@@ -19,14 +19,14 @@
               <img class="img-responsive img-rounded" src="/img/user.png" alt="User picture">
             </div>
             <div class="user-info">
-                        <span class="user-name">Jhon
-                            <strong>Smith</strong>
-                        </span>
+              <span class="user-name">Jhon
+                  <strong>Smith</strong>
+              </span>
               <span class="user-role"> {{email}} </span>
               <span class="user-status">
-                            <i class="fa fa-circle"></i>
-                            <span>Online</span>
-                        </span>
+                  <i class="fa fa-circle"></i>
+                  <span>Online</span>
+              </span>
             </div>
           </div>
           <!-- sidebar-search  -->
@@ -35,9 +35,9 @@
               <div class="input-group">
                 <input type="text" class="form-control search-menu" placeholder="Search...">
                 <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </span>
+                  <span class="input-group-text">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                  </span>
                 </div>
               </div>
             </div>
@@ -94,31 +94,36 @@
     </div>
     <!-- page-wrapper -->
 
-
-
-
   </div>
 </template>
 
 <script>
   // @ is an alias to /src
   import Hero from "@/components/Hero.vue";
+  import {fb} from '../firebase';
+
   export default {
+
     name: "admin",
+
     data(){
       return{
         name:null,
         email:null,
       }
     },
+
     components: {
       Hero
     },
+
     methods:{
+
       closeMenu(){
         $(".page-wrapper").toggleClass("toggled");
       },
- /*     logout(){
+
+      logout(){
         fb.auth().signOut()
           .then(() => {
             this.$router.replace('/');
@@ -126,11 +131,12 @@
           .catch((err) =>{
             console.log(err);
           });
-      }*/
+      }
     },
+
     created(){
-      // let user = fb.auth().currentUser;
-      // this.email = user.email;
+       let user = fb.auth().currentUser;
+       this.email = user.email;
     }
   };
 </script>

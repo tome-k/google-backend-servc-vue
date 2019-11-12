@@ -28,11 +28,11 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input type="password" v-model="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" @keyup.enter="login" v-model="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
 
                 <div class="form-group">
-                  <button class="btn btn-primary" >Login</button>
+                  <button class="btn btn-primary" @click="login">Login</button>
                 </div>
 
               </div>
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="form-group">
-                  <button class="btn btn-primary" >Signup</button>
+                  <button class="btn btn-primary" @click="register">Signup</button>
                 </div>
 
               </div>
@@ -73,19 +73,77 @@
 
 <script>
   //import {fb,db} from '../firebase'
+  import {fb, fs} from '../firebase'
+
   export default {
+
     name: "Login",
-    props: {
-      msg: String
-    },
+
     data(){
       return {
-        name:null,
-        email:null,
-        password:null
+        name: null,
+        email: null,
+        password: null
       }
     },
 
+    methods: {
+      register() {
+        // Sign in with email and pass.
+        // [START createwithemail]
+        fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+          .then((user) => {
+            $('#login').modal('hide')
+            fs.collection('profiles').doc(user.user.uid).set({
+              name: this.name
+            }).then(() => {
+              console.log('User created')
+            }).catch(() => {
+              console.log('Error')
+            })
+            this.$router.replace('admin')
+          })
+          .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          // [END_EXCLUDE]
+        });
+        // [END createwithemail]
+      },
+
+      login() {
+        // Sign in with email and pass.
+        // [START authwithemail]
+        fb.auth().signInWithEmailAndPassword(this.email, this.password)
+          .then(() => {
+            $('#login').modal('hide')
+            this.$router.replace('admin')
+          })
+          .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          //document.getElementById('quickstart-sign-in').disabled = false;
+          // [END_EXCLUDE]
+        });
+        // [END authwithemail]
+      }
+    }
   };
 </script>
 

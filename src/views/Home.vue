@@ -2,7 +2,7 @@
   <div class="home">
     <Navbar></Navbar>
     <Hero/>
-
+    <products></products>
 
     <div class="container h-100">
       <div class="row p-5 h-100 justify-content-center align-items-center">
@@ -19,6 +19,7 @@
       </div>
     </div>
 <Login />
+    <mini-cart />
   </div>
 </template>
 
@@ -26,12 +27,18 @@
   // @ is an alias to /src
   import Hero from "@/components/Hero.vue";
   import Login from "@/components/Login.vue";
+  import MiniCart from "@/components/MiniCart.vue";
+  import Products from "@/sections/ProductList.vue";
 
   export default {
+
     name: "home",
+
     components: {
+      MiniCart,
       Hero,
-      Login
+      Login,
+      Products
     }
   };
 </script>
