@@ -1,5 +1,7 @@
 # vue-shop
 
+E-commerce site with Vue and Firebase (using Vue-router and Vuex)
+
 ## Project setup
 ```
 npm install
