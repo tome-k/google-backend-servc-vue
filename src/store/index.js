@@ -3,9 +3,22 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+let cart = window.localStorage.getItem('cart');
+
 export default new Vuex.Store({
   state: {
-    cart: []
+    cart: cart ? JSON.parse(cart) : []
+  },
+
+  getters: {
+    totalPrice: state => {
+      let total = 0;
+      state.cart.filter((item) => {
+        total += (item.productPrice * item.productQuantity);
+      });
+
+      return total;
+    }
   },
 
   mutations: {
@@ -20,9 +33,18 @@ export default new Vuex.Store({
       this.commit('saveLocal');
     },
 
+    removeFromCart(state, item) {
+      let index = state.cart.indexOf(item);
+
+      state.cart.splice(index, 1);
+
+      this.commit('saveLocal');
+    },
+
     saveLocal(state) {
       window.localStorage.setItem('cart', JSON.stringify(state.cart));
     }
+
   },
 
   actions: {
