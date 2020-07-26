@@ -1,6 +1,8 @@
-# vue-shop
+# VUE - Shop
+## E-commerce site with Vue and Firebase (using Vue-router and Vuex)
+## [![Generic badge](https://img.shields.io/badge/Used-HTML-GREEN.svg?style=plastic)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) [![Generic badge](https://img.shields.io/badge/Used-CSS-BLUE.svg?style=plastic)](https://www.tutorialrepublic.com/css-tutorial/) [![Generic badge](https://img.shields.io/badge/Used-JS-YELLOW.svg?style=plastic)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![Generic badge](https://img.shields.io/badge/Used-VUE-BRIGHTGREEN.svg?style=plastic)](https://vuejs.org/) [![Generic badge](https://img.shields.io/badge/Used-Firebase-ORANGE.svg?style=plastic)](https://firebase.google.com//)
 
-E-commerce site with Vue and Firebase (using Vue-router and Vuex)
+<hr>
 
 ## Project setup
 ```
@@ -16,16 +18,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
